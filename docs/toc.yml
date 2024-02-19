@@ -1,0 +1,6 @@
+- name: R3 Docs
+  href: articles/
+- name: API Documentation
+  href: api/
+- name: Releases
+  href: https://github.com/Cysharp/R3/releases

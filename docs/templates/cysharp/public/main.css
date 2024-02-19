@@ -1,0 +1,26 @@
+/* navbar (Logo + AppName) */
+#logo {
+    height: 32px;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.navbar-brand > a {
+    display: inline-block;
+    padding-top: 8px;
+    color: var(--color-text-base);
+}
+.navbar-brand > a > span {
+    vertical-align: middle;
+}
+@media (min-width:768px){
+    .navbar-brand::after {
+        content: '';
+        display: inline-block;
+        width: 1px;
+        height: 32px;
+        background: #ccc;
+        vertical-align: middle;
+        margin-left: 16px;
+    }
+}
