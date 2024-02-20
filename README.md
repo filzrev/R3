@@ -780,7 +780,7 @@ Although standard support is provided for the following platforms, by implementi
 
 * [WPF](#wpf)
 * [Avalonia](#avalonia)
-* [MAUI](#mau)
+* [MAUI](#maui)
 * [WinForms](#winforms)
 * [Unity](#unity)
 * [Godot](#godot)

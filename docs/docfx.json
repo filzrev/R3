@@ -1,22 +1,89 @@
 {
   "metadata": [
+    // Build API metadata from Unity source files.
     {
       "src": [
         {
           "src": "../src",
           "files": [
-            "**/*.csproj",
-            "R3.Unity/**.cs"
+            "R3.Unity/**.cs", // TODO: Needs UnityEngine/UnityEditor DLL references.
           ]
         }
       ],
       "properties": {
-          "TargetFramework": "net8.0" // TODO: `R3.WinUI3` metadata is not generated when using this setting.
+         "TargetFramework": "net8.0"
       },
       "dest": "api",
-      "allowCompilationErrors": true, // This settings is required for Unity projects (that refencing UnityEngine/UnityEditor namespaces)
+      "allowCompilationErrors": true,
       "outputFormat": "apiPage"
-    }
+    },
+    // Build API metadata from csproj (Except for projects that requires non .NET8 target framework)
+    {
+      "src": [
+        {
+          "src": "../src",
+          "files": [
+            "**/*.csproj"
+          ],
+          "exclude": [
+            "**/R3.WinForms.csproj",
+            "**/R3.WPF.csproj",
+            "**/R3.WinUI3.csproj"
+          ]         
+        }
+      ],
+      "properties": {
+         "TargetFramework": "net8.0"
+      },
+      "dest": "api",
+      "allowCompilationErrors": false,
+      "outputFormat": "apiPage"
+    },
+    // Build API metadata for WinForms/WPF projects.
+    {
+      "src": [
+        {
+          "src": "../src",
+          "files": [
+            "**/R3.csproj",
+            "**/R3.WinForms.csproj",
+            "**/R3.WPF.csproj",
+          ],
+          "exclude": [
+            "**/R3.WinUI3.csproj"
+          ]
+        }
+      ],
+      "properties": {
+         // TODO: 
+         // When TargetFramework is not specified. Following warning occurred. 
+         // > Project does not contain 'Compile' target.`
+         // But when specified. following warning occurred.
+         // > warning: [Warning] Found project reference without a matching metadata reference: C:\Projects\R3\src\R3\R3.csproj
+         "TargetFramework": "net8.0-windows" // When not specified. Following warning occurred. Project does not contain 'Compile' target.`
+      },
+      "dest": "api",
+      "allowCompilationErrors": false,
+      "outputFormat": "apiPage"
+    },
+    // Build API metadata for WinUI3 project.
+    {
+      "src": [
+        {
+          "src": "../src",
+          "files": [
+            "**/R3.csproj",
+            "**/R3.WinUI3.csproj",
+          ]
+        }
+      ],
+      "properties": {
+         //"TargetFramework": "net6.0-windows10.0.19041.0" // No need to specify target framework.
+      },
+      "dest": "api",
+      "allowCompilationErrors": false,
+      "outputFormat": "apiPage"
+    },
   ],
   "build": {
     "content": [

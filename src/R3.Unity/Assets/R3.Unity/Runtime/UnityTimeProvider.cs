@@ -12,7 +12,7 @@ namespace R3
         Time,
         /// <summary>Ignore timescale, use Time.unscaledTime, Time.unscaledDeltaTime or Time.fixedUnscaledTime, Time.fixedUnscaledDeltaTime.</summary>
         UnscaledTime,
-        /// <summary>use Time.realtimeSinceStartup, TimeProvider.System.GetTimestamp()<summary>
+        /// <summary>use Time.realtimeSinceStartup, TimeProvider.System.GetTimestamp()</summary>
         Realtime
     }
 
