@@ -6,82 +6,30 @@
         {
           "src": "../src",
           "files": [
-            "R3.Unity/**.cs", // TODO: Needs UnityEngine/UnityEditor DLL references.
+            "R3.Unity/Assets/**.cs",
+          ]
+        }
+      ],
+      // TODO: Reference external DLLs
+      "references": [
+        {
+          "src": "../src",
+          "files": [
+            // "R3.dll",
+            // "UniTask.dll",
+            // "UnityEditor.dll",
+            // "UnityEngine.dll",
+            // "UnityEngine.UI.dll",
           ]
         }
       ],
       "properties": {
-         "TargetFramework": "net8.0"
+         "DefineConstants": "UNITY_EDITOR;NET6_0_OR_GREATER;NET8_0_OR_GREATER;TOOLS", // TODO: Set minimum settings that are required for metadata generation.
+         "TargetFramework": "net8.0",                                                 // Note: TargetFramework is not used when building metadata from source files.
+         "ProduceReferenceAssembly": true                                             // Note: Required when csproj based build that target netstandard2.1
       },
       "dest": "api",
       "allowCompilationErrors": true,
-      "outputFormat": "apiPage"
-    },
-    // Build API metadata from csproj (Except for projects that requires non .NET8 target framework)
-    {
-      "src": [
-        {
-          "src": "../src",
-          "files": [
-            "**/*.csproj"
-          ],
-          "exclude": [
-            "**/R3.WinForms.csproj",
-            "**/R3.WPF.csproj",
-            "**/R3.WinUI3.csproj"
-          ]         
-        }
-      ],
-      "properties": {
-         "TargetFramework": "net8.0"
-      },
-      "dest": "api",
-      "allowCompilationErrors": false,
-      "outputFormat": "apiPage"
-    },
-    // Build API metadata for WinForms/WPF projects.
-    {
-      "src": [
-        {
-          "src": "../src",
-          "files": [
-            "**/R3.csproj",
-            "**/R3.WinForms.csproj",
-            "**/R3.WPF.csproj",
-          ],
-          "exclude": [
-            "**/R3.WinUI3.csproj"
-          ]
-        }
-      ],
-      "properties": {
-         // TODO: 
-         // When TargetFramework is not specified. Following warning occurred. 
-         // > Project does not contain 'Compile' target.`
-         // But when specified. following warning occurred.
-         // > warning: [Warning] Found project reference without a matching metadata reference: C:\Projects\R3\src\R3\R3.csproj
-         "TargetFramework": "net8.0-windows" // When not specified. Following warning occurred. Project does not contain 'Compile' target.`
-      },
-      "dest": "api",
-      "allowCompilationErrors": false,
-      "outputFormat": "apiPage"
-    },
-    // Build API metadata for WinUI3 project.
-    {
-      "src": [
-        {
-          "src": "../src",
-          "files": [
-            "**/R3.csproj",
-            "**/R3.WinUI3.csproj",
-          ]
-        }
-      ],
-      "properties": {
-         //"TargetFramework": "net6.0-windows10.0.19041.0" // No need to specify target framework.
-      },
-      "dest": "api",
-      "allowCompilationErrors": false,
       "outputFormat": "apiPage"
     },
   ],
@@ -121,6 +69,9 @@
       "_noindex": true, // TODO: It's added to suppress contents crawled by search engine. It need to remove this settings for publish public site.
       "_enableSearch": true,
       "pdf": true
-    }
+    },
+    "xref": [
+      "xrefmaps/unity_2023.2.zip",
+    ]
   }
 }
